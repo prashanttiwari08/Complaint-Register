@@ -25,14 +25,13 @@ const sendTokenResponse = (user, statusCode, res) => {
 // @access  Public
 exports.register = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
-    // Create user
+    // Create user (role will default to 'user' as defined in the Mongoose schema)
     const user = await User.create({
       name,
       email,
-      password,
-      role
+      password
     });
 
     sendTokenResponse(user, 201, res);

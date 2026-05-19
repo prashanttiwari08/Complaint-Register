@@ -6,7 +6,7 @@ const {
   searchComplaints
 } = require('../controllers/complaintController');
 
-const { protect } = require('../middleware/authMiddleware');
+const { protect, authorize } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -19,6 +19,6 @@ router
 
 router
   .route('/:id')
-  .put(protect, updateComplaint); // Protected as an example, though paper just says "Protected Routes"
+  .put(protect, authorize('admin'), updateComplaint); // Only admin can update status
 
 module.exports = router;

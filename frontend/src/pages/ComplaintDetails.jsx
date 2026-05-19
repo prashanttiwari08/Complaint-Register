@@ -97,28 +97,30 @@ export default function ComplaintDetails({ user }) {
             </div>
           </div>
 
-          <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '20px', marginTop: '20px' }}>
-            <h4 style={{ marginBottom: '15px' }}>Update Status</h4>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <select 
-                className="form-input" 
-                value={status} 
-                onChange={(e) => setStatus(e.target.value)}
-                style={{ flex: 1 }}
-              >
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Resolved">Resolved</option>
-              </select>
-              <button 
-                className="btn btn-primary" 
-                onClick={handleStatusUpdate}
-                disabled={updating || status === complaint.status}
-              >
-                {updating ? 'Updating...' : 'Update'}
-              </button>
+          {user?.role === 'admin' && (
+            <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '20px', marginTop: '20px' }}>
+              <h4 style={{ marginBottom: '15px' }}>Update Status</h4>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <select 
+                  className="form-input" 
+                  value={status} 
+                  onChange={(e) => setStatus(e.target.value)}
+                  style={{ flex: 1 }}
+                >
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                </select>
+                <button 
+                  className="btn btn-primary" 
+                  onClick={handleStatusUpdate}
+                  disabled={updating || status === complaint.status}
+                >
+                  {updating ? 'Updating...' : 'Update'}
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {complaint.aiPriority && (

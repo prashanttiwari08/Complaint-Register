@@ -7,13 +7,14 @@ export default function Register({ onLogin }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('user');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://complaint-register-pm38.onrender.com/api/auth/register', { name, email, password });
+      const res = await axios.post('https://complaint-register-pm38.onrender.com/api/auth/register', { name, email, password, role });
       onLogin(res.data.user, res.data.token);
       navigate('/dashboard');
     } catch (err) {
@@ -62,6 +63,17 @@ export default function Register({ onLogin }) {
             required 
             minLength={6}
           />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Role</label>
+          <select 
+            className="form-input" 
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
         </div>
         <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '10px' }}>
           Sign Up

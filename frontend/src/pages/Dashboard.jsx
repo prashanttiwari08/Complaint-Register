@@ -17,7 +17,7 @@ export default function Dashboard({ user }) {
   const fetchComplaints = async () => {
     try {
       setLoading(true);
-      let url = 'http://localhost:5000/api/complaints';
+      let url = 'https://complaint-register-pm38.onrender.com/api/complaints';
       if (category) {
         url += `?category=${category}`;
       }
@@ -35,7 +35,7 @@ export default function Dashboard({ user }) {
     if (!search) return fetchComplaints();
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/api/complaints/search?location=${search}`);
+      const res = await axios.get(`https://complaint-register-pm38.onrender.com/api/complaints/search?location=${search}`);
       setComplaints(res.data.data);
       setLoading(false);
     } catch (err) {

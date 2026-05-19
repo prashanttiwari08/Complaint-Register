@@ -13,7 +13,7 @@ export default function Register({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', { name, email, password });
+      const res = await axios.post('https://complaint-register-pm38.onrender.com/api/auth/register', { name, email, password });
       onLogin(res.data.user, res.data.token);
       navigate('/dashboard');
     } catch (err) {

@@ -18,7 +18,7 @@ export default function ComplaintDetails({ user }) {
 
   const fetchComplaint = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/complaints`);
+      const res = await axios.get(`https://complaint-register-pm38.onrender.com/api/complaints`);
       const found = res.data.data.find(c => c._id === id);
       if (found) {
         setComplaint(found);
@@ -35,7 +35,7 @@ export default function ComplaintDetails({ user }) {
     setUpdating(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/complaints/${id}`, 
+      await axios.put(`https://complaint-register-pm38.onrender.com/api/complaints/${id}`, 
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

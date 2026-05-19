@@ -24,10 +24,10 @@ export default function SubmitComplaint({ user }) {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/complaints', formData);
+      const res = await axios.post('https://complaint-register-pm38.onrender.com/api/complaints', formData);
       
       // Call AI Analysis
-      await axios.post('http://localhost:5000/api/ai/analyze', { id: res.data.data._id });
+      await axios.post('https://complaint-register-pm38.onrender.com/api/ai/analyze', { id: res.data.data._id });
 
       navigate('/dashboard');
     } catch (err) {
